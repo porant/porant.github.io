@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Porant — Portfolio</title>
 
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
 
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
@@ -210,10 +210,46 @@
             const btnFullscreen = document.getElementById('lb-fullscreen');
 
             let currentIndex = 0;
+            const visibleCards = new Set();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const video = entry.target.querySelector('video');
+                    if (!video) return;
+
+                    if (entry.isIntersecting) {
+                        visibleCards.add(entry.target);
+                        if (!lightbox.classList.contains('is-open')) {
+                            video.play().catch(() => {});
+                        }
+                    } else {
+                        visibleCards.delete(entry.target);
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach((card, index) => {
+                observer.observe(card);
+
+                const trigger = card.querySelector('.media-wrap');
+                trigger.addEventListener('click', () => openLightbox(index));
+                trigger.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(index);
+                    }
+                });
+            });
 
             function openLightbox(index) {
                 currentIndex = (index + cards.length) % cards.length;
                 const card = cards[currentIndex];
+
+                cards.forEach((c) => {
+                    const v = c.querySelector('video');
+                    if (v) v.pause();
+                });
 
                 lbTitle.textContent = card.dataset.title || '';
                 lbTag.textContent = card.dataset.tag || '';
@@ -233,18 +269,12 @@
                 lbVideo.pause();
                 lbVideo.removeAttribute('src');
                 lbVideo.load();
-            }
 
-            cards.forEach((card, index) => {
-                const trigger = card.querySelector('.media-wrap');
-                trigger.addEventListener('click', () => openLightbox(index));
-                trigger.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        openLightbox(index);
-                    }
+                visibleCards.forEach((c) => {
+                    const v = c.querySelector('video');
+                    if (v) v.play().catch(() => {});
                 });
-            });
+            }
 
             btnClose.addEventListener('click', closeLightbox);
             btnPrev.addEventListener('click', () => openLightbox(currentIndex - 1));
