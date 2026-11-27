@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Porant — Portfolio</title>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- ?v=2 сбрасывает кэш старого style.css -->
+    <link rel="stylesheet" href="style.css?v=2">
 
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
@@ -15,14 +16,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="https://litics.porant.de/script.js" data-website-id="e810b1bf-a3e0-4340-a0ff-8105e79ffcee"></script>
 </head>
 
 <body>
     <header class="site-header">
         <div class="header-inner">
-            <a href="#" class="logo">PORANT</a>
+            <a href="#" class="logo">
+                <span class="logo-dot"></span>
+                PORANT
+            </a>
             <nav class="nav">
                 <a href="#anims">Animations</a>
                 <a href="#projects">Projects</a>
@@ -31,7 +35,7 @@
     </header>
 
     <main class="container">
-        <!-- Hero-блок с 3D-кубом -->
+        <!-- Hero -->
         <section class="hero">
             <div class="spinner-wrapper">
                 <div class="spinner">
@@ -43,13 +47,20 @@
                     <div>PT</div>
                 </div>
             </div>
-            <h1 class="hero-title">Porant</h1>
-            <p class="hero-subtitle">Motion Designer &amp; Animator</p>
+            <div class="hero-content">
+                <span class="hero-badge">Portfolio</span>
+                <h1 class="hero-title">Porant</h1>
+                <p class="hero-subtitle">Motion design, stream visuals &amp; pixel animations.</p>
+            </div>
         </section>
 
         <!-- Анимации -->
         <section id="anims" class="section">
-            <h2 class="section-title">Animations</h2>
+            <div class="section-header">
+                <h2 class="section-title">Animations</h2>
+                <span class="section-count">03</span>
+            </div>
+
             <div class="grid">
                 <article class="card">
                     <div class="media-wrap">
@@ -91,28 +102,37 @@
 
         <!-- Небольшие проекты -->
         <section id="projects" class="section">
-            <h2 class="section-title">Small Projects</h2>
-            <div class="grid grid-small">
-                <article class="card">
-                    <div class="emotes-showcase">
-                        <div class="emote-box">
-                            <img class="emote" src="anims/Booba.gif" alt="MagicMaid Booba emote">
-                        </div>
-                        <div class="emote-box">
-                            <img class="emote" src="anims/HypeAnim.gif" alt="MagicMaid Hype emote">
-                        </div>
-                    </div>
-                    <div class="card-info">
-                        <h3>MagicMaid's Emotes</h3>
-                        <span class="tag">GIF / Emotes</span>
-                    </div>
-                </article>
+            <div class="section-header">
+                <h2 class="section-title">Small Projects</h2>
+                <span class="section-count">01</span>
             </div>
+
+            <article class="project-row">
+                <div class="project-info">
+                    <span class="tag">Emotes · GIF</span>
+                    <h3>MagicMaid's Emotes</h3>
+                    <p>Custom animated pixel emotes for chat and streams.</p>
+                </div>
+
+                <div class="emotes-showcase">
+                    <div class="emote-box">
+                        <img class="emote" src="anims/Booba.gif" alt="MagicMaid Booba emote">
+                        <span>Booba</span>
+                    </div>
+                    <div class="emote-box">
+                        <img class="emote" src="anims/HypeAnim.gif" alt="MagicMaid Hype emote">
+                        <span>Hype</span>
+                    </div>
+                </div>
+            </article>
         </section>
     </main>
 
     <footer class="site-footer">
-        <p>© Porant</p>
+        <div class="footer-inner">
+            <span>© Porant</span>
+            <span class="footer-note">Built clean &amp; minimal</span>
+        </div>
     </footer>
 </body>
 
