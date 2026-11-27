@@ -7,8 +7,7 @@
     --text: #f4f4f5;
     --text-muted: #8b8b96;
     --accent: #b3ff00;
-    --font-sans: "Space Grotesk", sans-serif;
-    --font-pixel: "Silkscreen", sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 *,
@@ -26,12 +25,19 @@ body {
     min-height: 100vh;
     background-color: var(--bg);
     color: var(--text);
-    font-family: var(--font-sans);
+    font-family: var(--font-mono);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Навигация (без backdrop-filter для максимального FPS) */
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+/* Навигация */
 .site-header {
     position: sticky;
     top: 0;
@@ -53,11 +59,11 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-family: var(--font-pixel);
-    font-size: 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
     color: var(--text);
     text-decoration: none;
-    letter-spacing: 1px;
+    letter-spacing: 0.08em;
 }
 
 .logo-dot {
@@ -75,8 +81,8 @@ body {
 .nav a {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 0.875rem;
+    font-weight: 400;
     transition: color 0.2s ease;
 }
 
@@ -113,26 +119,26 @@ body {
 
 .hero-badge {
     display: inline-block;
-    font-family: var(--font-pixel);
-    font-size: 0.65rem;
+    font-size: 0.72rem;
+    font-weight: 500;
     color: var(--accent);
-    letter-spacing: 1px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 6px;
 }
 
 .hero-title {
     margin: 0;
-    font-size: 2.25rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
 }
 
 .hero-subtitle {
     margin: 8px 0 0;
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 0.95rem;
 }
 
 /* Заголовки секций */
@@ -149,14 +155,13 @@ body {
 
 .section-title {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
 }
 
 .section-count {
-    font-family: var(--font-pixel);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
 }
 
@@ -237,19 +242,21 @@ body {
 
 .card-info h3 {
     margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.92rem;
+    font-weight: 500;
     color: var(--text);
 }
 
 .tag {
     display: inline-block;
-    font-family: var(--font-pixel);
-    font-size: 0.62rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--accent);
     background: rgba(179, 255, 0, 0.08);
     border: 1px solid rgba(179, 255, 0, 0.22);
-    padding: 4px 8px;
+    padding: 3px 8px;
     border-radius: 5px;
     white-space: nowrap;
 }
@@ -273,14 +280,14 @@ body {
 
 .project-info h3 {
     margin: 10px 0 4px;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 600;
 }
 
 .project-info p {
     margin: 0;
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.875rem;
 }
 
 .emotes-showcase {
@@ -307,8 +314,7 @@ body {
 }
 
 .emote-box span {
-    font-family: var(--font-pixel);
-    font-size: 0.65rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
 }
 
@@ -323,7 +329,7 @@ body {
 .site-footer {
     border-top: 1px solid var(--border);
     color: var(--text-muted);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .footer-inner {
@@ -336,12 +342,11 @@ body {
 }
 
 .footer-note {
-    font-family: var(--font-pixel);
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     opacity: 0.7;
 }
 
-/* Полноэкранный лайтбокс (без backdrop-filter) */
+/* Полноэкранный лайтбокс */
 .lightbox {
     position: fixed;
     inset: 0;
@@ -377,7 +382,7 @@ body {
 
 .lightbox-meta h3 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
@@ -449,7 +454,7 @@ body {
     position: relative;
     animation: spinner-y0fdc1 5.8s infinite linear;
     transform-style: preserve-3d;
-    font-family: var(--font-pixel);
+    font-weight: 700;
     will-change: transform;
 }
 
@@ -461,8 +466,9 @@ body {
     border: 1px solid var(--accent);
     color: var(--accent);
     text-align: center;
-    line-height: 52px;
-    font-size: 1.4rem;
+    line-height: 50px;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
     backface-visibility: hidden;
 }
 
